@@ -13,7 +13,7 @@ const CardsForEachLevel = (props) => {
 
 	return (
 		(props.game.cards.length > 0) ? <ul>{
-			props.game.cards.map((item, ind) => <li key={`card${ind}`} onClick={() => props.showCard(ind, props.game)}>{ item.showCard ? item.frontOfCard : item.backOfCard }</li>)}
+			props.game.cards.map((item, ind) => <li key={`card${ind}`} onClick={() => props.showCard(ind, props.game)}>{ item.showCard ? item.name : 'girar' }</li>)}
 		</ul> : ''
 	);
 };

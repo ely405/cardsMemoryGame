@@ -2,21 +2,24 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { randomCardsAction, loadCardsAction } from '../../../ducks/GameZone/gameReducer';
+import { fetchPokemonsAction } from '../../../ducks/dataReducer';
 
 const GameStartButton = (props) => {
 	console.log('props game start button', props);
 	return (
-		<button onClick={() => props.startGame()}>Inicia Juego</button>
+		<button onClick={() => props.startGame(props.pokeData)}>Inicia Juego</button>
 	);
 };
 
 const mapStateToProps = state => ({
 	game: state.gameStatus,
+	pokeData: state.pokeData,
 });
 
 const mapDispatchToProps = dispatch => ({
-	startGame() {
-		dispatch(loadCardsAction());
+	startGame(allCards) {
+		dispatch(fetchPokemonsAction());
+		dispatch(loadCardsAction(allCards));
 		dispatch(randomCardsAction());
 	},
 });

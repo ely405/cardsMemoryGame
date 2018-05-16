@@ -3,7 +3,7 @@ const RANDOM_CARDS = 'gameZone/startButton/RANDOM_CARDS';
 const SHOW_CARD = 'gameZone/card/SHOW_CARD';
 const COMPARE_CARDS_IN_PLAY = 'gameZone/card/COMPARE_CARDS_IN_PLAY';
 
-const loadCardsAction = () => ({ type: LOAD_CARDS_TO_GAME });
+const loadCardsAction = allCards => ({ type: LOAD_CARDS_TO_GAME, allCards });
 const randomCardsAction = () => ({ type: RANDOM_CARDS });
 const showCardAction = cardPosition => ({ type: SHOW_CARD, cardPosition });
 const compareCardsInPlayAction = () => ({ type: COMPARE_CARDS_IN_PLAY });
@@ -18,13 +18,9 @@ export {
 
 function randomArray(array) {
 	let counter = array.length;
-	// While there are elements in the array
 	while (counter > 0) {
-		// Pick a random index
 		const index = Math.floor(Math.random() * counter);
-		// Decrea se counter by 1
 		counter -= 1;
-		// And swap the last element with it
 		const temp = array[counter];
 		array[counter] = array[index];
 		array[index] = temp;
@@ -35,17 +31,20 @@ function randomArray(array) {
 export default function startGameReducer(state = {
 	cards: [], show: false, clicks: 0, cardsToCompare: [],
 }, action) {
+	const { allCards } = action;
+
 	switch (action.type) {
 	case LOAD_CARDS_TO_GAME:
+		while (allCards.length > 4) {
+			const random = Math.floor(Math.random() * allCards.length);
+			allCards.splice(random, 1);
+		}
+
+		state.cards = [];
+
 		return {
 			...state,
-			cards:
-			[
-				{ id: 1, backOfCard: 'a', frontOfCard: 'A' },
-				{ id: 2, backOfCard: 'b', frontOfCard: 'B' },
-				{ id: 3, backOfCard: 'c', frontOfCard: 'C' },
-				{ id: 4, backOfCard: 'd', frontOfCard: 'D' },
-			],
+			cards: state.cards.concat(allCards),
 		};
 
 	case RANDOM_CARDS:
@@ -70,7 +69,7 @@ export default function startGameReducer(state = {
 		if (state.cardsToCompare.length === 2) {
 			state.cardsToCompare.map((card) => {
 				const indInAllCards = state.cards.indexOf(card);
-				if (state.cardsToCompare[0].id === state.cardsToCompare[1].id) {
+				if (state.cardsToCompare[0].name === state.cardsToCompare[1].name) {
 					state.cards.splice(indInAllCards, 1, {
 						...card, showCard: true, toCompare: false, matchedCards: true,
 					});
