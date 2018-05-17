@@ -44,9 +44,20 @@ module.exports = {
 			},
 			{
 				test: /\.scss$/,
+				exclude: /style.scss/,
 				use: [
 					'style-loader',
-	        'css-loader',
+					// 'css-loader',
+					'css-loader?minimize=true&modules=true&localIdentName=[name]__[local]',
+					'resolve-url-loader',
+					'sass-loader?sourceMap',
+				],
+			},
+			{
+				test: /style.scss/,
+				use: [
+					'style-loader',
+					'css-loader',
 					'resolve-url-loader',
 					'sass-loader?sourceMap',
 				],

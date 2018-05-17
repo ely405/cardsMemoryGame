@@ -4,6 +4,7 @@ const FETCH_POKEMONS = 'app/pokemonData/FETCH_POKEMONS';
 
 const fetchPokemonsAction = () => (dispatch) => {
 	const randomNumber = Math.floor(Math.random() * 800);
+
 	return fetch(`https://pokeapi.co/api/v2/pokemon/?limit=10&offset=${randomNumber}`)
 		.then(response => response.json())
 		.then((data) => {
