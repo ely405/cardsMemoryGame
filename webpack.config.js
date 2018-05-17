@@ -45,6 +45,21 @@ module.exports = {
 			},
 			{
 				test: /\.scss$/,
+				exclude: /style.scss/,
+				use: ExtractTextPlugin.extract({
+					fallback: 'style-loader',
+					use: [
+						'css-loader?minimize=true&modules=true&localIdentName=[name]__[local]',
+						'resolve-url-loader',
+						'postcss-loader?sourceMap',
+						'sass-loader?sourceMap',
+					],
+					publicPath: './',
+					// loader: ' css-loader! resolve-url-loader! sass-loader? sourceMap',
+				}),
+			},
+			{
+				test: /style.scss/,
 				use: ExtractTextPlugin.extract({
 					fallback: 'style-loader',
 					use: [

@@ -47,7 +47,6 @@ module.exports = {
 				exclude: /style.scss/,
 				use: [
 					'style-loader',
-					// 'css-loader',
 					'css-loader?minimize=true&modules=true&localIdentName=[name]__[local]',
 					'resolve-url-loader',
 					'sass-loader?sourceMap',
