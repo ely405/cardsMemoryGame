@@ -1,3 +1,21 @@
-.card{
-	height: 7rem;
+// .card{
+// 	min-height: 7rem;
+// }
+
+.cardContainer {
+	.card{
+		min-height: 7rem;
+	&.rotateCard{
+			animation-name: rotate;
+			animation-duration: 2s;
+			background-color: red;
+			transform: rotateY(0deg);
+		}
+	}
+}
+
+
+@keyframes rotate {
+	from { transform: rotateY(180deg); }
+	to { transform: rotateY(0deg); }
 }

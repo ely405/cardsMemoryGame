@@ -43,11 +43,13 @@ export default function startGameReducer(state = {
 		console.warn('allcards', allCards);
 
 		allCards.map((card) => {
-			const urlString = card.url;
-			const urlArr = urlString.split('/');
-			const idPokemon = urlArr.filter(el => parseInt(el, 10));
+			if (!card.pokeId) {
+				// const urlString = card.url;
+				const urlArr = card.url.split('/');
+				const idPokemon = urlArr.filter(el => parseInt(el, 10));
 
-			card.pokeId = parseInt(idPokemon[0], 10);
+				card.pokeId = parseInt(idPokemon[0], 10);
+			}
 		});
 
 		state.cards = [];

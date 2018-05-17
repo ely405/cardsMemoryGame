@@ -8,11 +8,11 @@ import ErrorMessage from '../ErrorMessage';
 
 const GameZone = props => (
 	<div>
-		<GameStartButton/>
 		<div className='navbar-nav align-items-center justify-content-center flex-md-row align-items-md-start'>
 			<CardsForEachLevel/>
 			{(props.cards.length > 0) ? <ScoreOfGame/> : ''}
 		</div>
+		<GameStartButton/>
 	</div>
 );
 

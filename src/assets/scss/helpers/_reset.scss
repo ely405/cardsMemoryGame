@@ -1,12 +1,3 @@
-// $font-size: 16px;
-// $font-color: #FFF;
-// $bg-color: #2B3A42;
-// $dark: #1D78C1;
-// $light: #8DD6F9;
-
-// @import '../variables';
-
-
 // html {
 //   font: {
 //     // family: $font;
@@ -24,14 +15,13 @@
 // }
 
 body {
-  // padding: 1rem;
-  // display: flex;
-  // flex-direction: column;
-  // align-content: center;
-  // text-align: center;
 	background-color: $bg-color;
 	color: $font-color;
 }
+
+button, input { outline: none; }
+
+ul { list-style: none;}
 
 // a {
 //   display: block;
@@ -41,13 +31,3 @@ body {
 
 //   &:hover { color: $light; }
 // }
-
-// img {
-//   margin: auto;
-//   display: block;
-//   max-width: 100%;
-//   height: auto;
-// }
-
-
-ul { list-style: none;}

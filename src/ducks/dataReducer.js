@@ -1,4 +1,4 @@
-import pokemonsJson from '../pokemons.json';
+import pokemonsJson from '../../pokemons.json';
 
 
 const FETCH_POKEMONS = 'app/pokemonData/FETCH_POKEMONS';
@@ -7,7 +7,7 @@ const fetchPokemonsAction = () => (dispatch) => {
 	const randomNumber = Math.floor(Math.random() * 800);
 
 	return fetch(`https://pokeapi.co/api/v2/pokemon/?limit=10&offset=${randomNumber}`)
-		.then(response => response.json())
+	.then(response => response.json())
 		.then((data) => {
 			console.log('response', data);
 			dispatch({
@@ -24,6 +24,7 @@ const fetchPokemonsAction = () => (dispatch) => {
 					isLoaded: true,
 				});
 			}, 6000);
+			console.log('pokemons', pokemonsJson);
 			dispatch({
 				type: FETCH_POKEMONS,
 				pokemons: pokemonsJson.pokemons,
