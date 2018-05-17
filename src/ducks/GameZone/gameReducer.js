@@ -29,9 +29,10 @@ function randomArray(array) {
 }
 
 export default function startGameReducer(state = {
-	cards: [], show: false, clicks: 0, cardsToCompare: [],
+	cards: [], show: false, clicks: 0, cardsToCompare: [], backOfCard: 1,
 }, action) {
 	const { allCards } = action;
+	// let { backOfCard } = action;
 
 	switch (action.type) {
 	case LOAD_CARDS_TO_GAME:
@@ -48,6 +49,8 @@ export default function startGameReducer(state = {
 		};
 
 	case RANDOM_CARDS:
+		state.backOfCard = (state.backOfCard === 1) ? 2 : 1;
+
 		return { ...state, cards: randomArray(state.cards.concat(state.cards)) };
 
 

@@ -1,16 +1,17 @@
-const webpack = require('webpack'),
-	path = require('path'),
-	srcDir = path.resolve(__dirname, 'src'),
-	publicDir = path.resolve(__dirname, 'public'),
-	HtmlWebpackPlugin = require('html-webpack-plugin'),
-	ReloadPlugin = require('reload-html-webpack-plugin');
+const webpack = require('webpack');
+const	path = require('path');
+const	HtmlWebpackPlugin = require('html-webpack-plugin');
+const	ReloadPlugin = require('reload-html-webpack-plugin');
+
+const	srcDir = path.resolve(__dirname, 'src');
+const	publicDir = path.resolve(__dirname, 'public');
 
 module.exports = {
 	context: srcDir,
 	// devtool: 'hidden-source-map',
 	devtool: 'inline-sourcemap',
 	entry: {
-		script: './index.js',
+		script: ['babel-polyfill', './index.js'],
 	},
 	output: {
 		path: publicDir,
