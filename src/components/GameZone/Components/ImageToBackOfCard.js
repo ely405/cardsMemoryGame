@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import pokebola from '../../../assets/img/pokebola.jpg';
+import pokebola from '../../../assets/img/pokebola.png';
 import pokebolaBW from '../../../assets/img/pokebola_bw.jpg';
 
 const ImageToBackOfCard = props => (<img src={props.backOfCard === 1 ? pokebola : pokebolaBW } className='img-fluid'/>);

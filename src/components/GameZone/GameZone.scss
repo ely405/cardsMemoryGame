@@ -1,21 +1,36 @@
-// .card{
-// 	min-height: 7rem;
-// }
+	.card {
+		height: 10rem;
+	}
 
-.cardContainer {
-	.card{
-		min-height: 7rem;
-	&.rotateCard{
-			animation-name: rotate;
-			animation-duration: 2s;
-			background-color: red;
+	@keyframes rotate {
+		from {
+			transform: rotateY(180deg);
+		}
+		to {
 			transform: rotateY(0deg);
 		}
 	}
-}
 
-
-@keyframes rotate {
-	from { transform: rotateY(180deg); }
-	to { transform: rotateY(0deg); }
-}
+	// &.rotateCard div{
+	// 	background-color: red;
+	// 		animation-name: rotate;
+	// 		animation-duration: 2s;
+	// 		transform: rotateY(0deg);
+	// 		// -webkit-transition: 0.5s;
+	// 		// -webkit-transform-style: preserve-3d;
+	// 		// -moz-transition: 0.5s;
+	// 		// -moz-transform-style: preserve-3d;
+	// 		// -o-transition: 0.5s;
+	// 		// -o-transform-style: preserve-3d;
+	// 		// transition: 0.5s;
+	// 		// transform-style: preserve-3d;
+	// 		// position: relative;
+	// 		.front, .back {
+	// 			-webkit-backface-visibility: hidden;
+	// 			-moz-backface-visibility: hidden;
+	// 			-o-backface-visibility: hidden;
+	// 			backface-visibility: hidden;
+	// 			position: absolute;
+	// 			top: 0;
+	// 			left: 0;
+	// 		}

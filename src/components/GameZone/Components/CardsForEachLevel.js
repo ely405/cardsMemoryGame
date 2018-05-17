@@ -9,15 +9,14 @@ import ImageToBackOfCard from './ImageToBackOfCard';
 
 import style from '../GameZone.scss';
 
-console.log('style', style);
-
 const CardsForEachLevel = props => (
-	(props.game.cards.length > 0) ? <ul className={`${style.cardContainer} col-sm-10 col-md-8 row`}>{
+	(props.game.cards.length > 0) ? <ul className={'col-sm-10 col-md-8 row'}>{
 		props.game.cards.map((item, ind) => <li
 			key={`card${ind}`}
 			onClick={() => props.showCard(ind, props.game)}
-			className={`${style.card} ${item.showCard ? style.rotateCard : ''} col-3 p-0`}>
-			{ item.showCard ? <div><img src={`https://serebii.net/art/th/${item.pokeId}.png`} className={` img-fluid`}/> {item.name} </div> : <ImageToBackOfCard/> }
+			className={`${style.card} col-3 card jumbotron-fluid justify-content-center`}>
+			{ item.showCard ? <img src={`https://serebii.net/art/th/${item.pokeId}.png`} className='img-fluid'/> :
+				 <ImageToBackOfCard/> }
 		</li>)}
 	</ul> : <BeforeStartGameCard/>
 );

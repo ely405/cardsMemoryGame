@@ -37,14 +37,16 @@ export default function startGameReducer(state = {
 	case LOAD_CARDS_TO_GAME:
 		while (allCards.length > 4) {
 			const random = Math.floor(Math.random() * allCards.length);
+			if (!allCards[random]) {
+				console.warn('undefined', allCards);
+			}
 			allCards.splice(random, 1);
 		}
 
-		console.warn('allcards', allCards);
+		console.warn('allcard', allCards);
 
 		allCards.map((card) => {
 			if (!card.pokeId) {
-				// const urlString = card.url;
 				const urlArr = card.url.split('/');
 				const idPokemon = urlArr.filter(el => parseInt(el, 10));
 

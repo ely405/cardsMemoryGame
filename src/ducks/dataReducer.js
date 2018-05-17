@@ -5,9 +5,16 @@ const FETCH_POKEMONS = 'app/pokemonData/FETCH_POKEMONS';
 
 const fetchPokemonsAction = () => (dispatch) => {
 	const randomNumber = Math.floor(Math.random() * 800);
+	dispatch({
+		type: FETCH_POKEMONS,
+		pokemons: pokemonsJson.pokemons,
+		isLoaded: true,
+		// message: 'Uy! no pudimos cargar más pokemones, revisa tu conexión a internet.',
+		// error: err,
+	});
 
 	return fetch(`https://pokeapi.co/api/v2/pokemon/?limit=10&offset=${randomNumber}`)
-	.then(response => response.json())
+		.then(response => response.json())
 		.then((data) => {
 			console.log('response', data);
 			dispatch({
@@ -27,7 +34,7 @@ const fetchPokemonsAction = () => (dispatch) => {
 			console.log('pokemons', pokemonsJson);
 			dispatch({
 				type: FETCH_POKEMONS,
-				pokemons: pokemonsJson.pokemons,
+				// pokemons: pokemonsJson.pokemons,
 				isLoaded: false,
 				message: 'Uy! no pudimos cargar más pokemones, revisa tu conexión a internet.',
 				error: err,
