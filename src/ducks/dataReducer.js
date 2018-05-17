@@ -11,16 +11,44 @@ const fetchPokemonsAction = () => (dispatch) => {
 			dispatch({
 				type: FETCH_POKEMONS,
 				pokemons: data.results,
+				isLoaded: true,
 			});
-		});
+		})
+		.catch((err) => {
+			setTimeout(() => {
+				console.warn('paso w segundoa');
+				dispatch({
+					type: FETCH_POKEMONS,
+					isLoaded: true,
+				});
+			}, 10000);
+			dispatch({
+				type: FETCH_POKEMONS,
+				pokemons: [],
+				isLoaded: false,
+				message: 'Uy! no pudimos cargar los pokemones, revisa tu conexión a internet',
+				error: err,
+			});
+ });
 };
 
 export { fetchPokemonsAction };
 
-export default function dataReducer(state = [], action) {
+export default function dataReducer(state = { data: [], isLoaded: false, message: null }, action) {
+	const { isLoaded } = action;
 	switch (action.type) {
 	case FETCH_POKEMONS:
-		return state.concat(action.pokemons);
+		// return action.isLoaded ?
+		// 	{ ...state, data: state.data.concat(action.pokemons), isLoaded: true } :
+		// 	{ data: state.data.concat(action.pokemons), isLoaded: false, message: action.message };
+
+
+		if (isLoaded) {
+			return { data: state.data.concat(action.pokemons), isLoaded: true, message: null };
+		}
+
+		return { data: state.data.concat(action.pokemons), isLoaded: false, message: action.message };
+
 
 		// return state.concat([
 		// 	{

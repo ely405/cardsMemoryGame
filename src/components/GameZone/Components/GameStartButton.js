@@ -5,7 +5,7 @@ import { randomCardsAction, loadCardsAction } from '../../../ducks/GameZone/game
 import { fetchPokemonsAction } from '../../../ducks/dataReducer';
 
 const GameStartButton = props => (
-	<button onClick={() => props.startGame(props.pokeData)}>Inicia Juego</button>
+	<button onClick={() => props.startGame(props.pokeData.data)}>Inicia Juego</button>
 );
 
 const mapStateToProps = state => ({
