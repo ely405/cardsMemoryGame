@@ -34,18 +34,14 @@ export default function startGameReducer(state = {
 	const { allCards } = action;
 
 	switch (action.type) {
-	case LOAD_CARDS_TO_GAME:
-		while (allCards.length > 4) {
+	case LOAD_CARDS_TO_GAME: {
+		const filterCard = [];
+		while (filterCard.length < 4) {
 			const random = Math.floor(Math.random() * allCards.length);
-			if (!allCards[random]) {
-				console.warn('undefined', allCards);
-			}
-			allCards.splice(random, 1);
+			if (allCards[random] !== undefined) filterCard.push(allCards[random]);
 		}
 
-		console.warn('allcard', allCards);
-
-		allCards.map((card) => {
+		filterCard.map((card) => {
 			if (!card.pokeId) {
 				const urlArr = card.url.split('/');
 				const idPokemon = urlArr.filter(el => parseInt(el, 10));
@@ -58,9 +54,9 @@ export default function startGameReducer(state = {
 
 		return {
 			...state,
-			cards: state.cards.concat(allCards),
+			cards: state.cards.concat(filterCard),
 		};
-
+	}
 	case RANDOM_CARDS:
 		state.backOfCard = (state.backOfCard === 1) ? 2 : 1;
 

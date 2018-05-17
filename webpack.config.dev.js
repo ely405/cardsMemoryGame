@@ -27,7 +27,7 @@ module.exports = {
 		open: true,
 		hot: true,
 		stats: 'errors-only',
-		port: 3000,
+		port: 5000,
 		openPage: '',
 	},
 	module: {
