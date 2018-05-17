@@ -10,7 +10,7 @@ import ImageToBackOfCard from './ImageToBackOfCard';
 const CardsForEachLevel = props => (
 	(props.game.cards.length > 0) ? <ul className='col-sm-10 col-md-8 row'>{
 		props.game.cards.map((item, ind) => <li key={`card${ind}`} onClick={() => props.showCard(ind, props.game)} className='card-in-game col-3 p-0 card-deck'>
-			{ item.showCard ? item.name : <ImageToBackOfCard/> }
+			{ item.showCard ? <div> <img src={`https://serebii.net/art/th/${item.pokeId}.png`} className='img-fluid'/> {item.name} </div>: <ImageToBackOfCard/> }
 		</li>)}
 	</ul> : <BeforeStartGameCard/>
 );
