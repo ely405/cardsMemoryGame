@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { randomCardsAction, loadCardsAction } from '../../../ducks/GameZone/gameReducer';
 
 const GameStartButton = ({ cards, pokeData, startGame }) => (
-	<button onClick={() => startGame(pokeData.data)} className='btn-success m-3'>
+	<button onClick={() => startGame(pokeData.data)} className='btn-success col-12'>
 		{cards.length > 0 ? 'Quiero reinciar la partida' : 'Quiero empezar el juego'}
 	</button>
 );

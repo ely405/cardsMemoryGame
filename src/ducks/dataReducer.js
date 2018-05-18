@@ -20,7 +20,6 @@ const fetchPokemonsAction = () => (dispatch) => {
 				console.warn('paso w segundoa');
 				dispatch({
 					type: FETCH_POKEMONS,
-					// isLoaded: true,
 					pokemons: [],
 				});
 			}, 6000);

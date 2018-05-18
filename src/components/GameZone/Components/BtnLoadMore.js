@@ -5,7 +5,7 @@ import { fetchPokemonsAction } from '../../../ducks/dataReducer';
 
 import pokebola from '../../../assets/img/pokebola.png';
 
-const btnLoadMore = ({ fetchPokemons }) => (<button onClick={() => fetchPokemons()}>Quiero cargar más pokemones</button>);
+const btnLoadMore = ({ fetchPokemons }) => (<button onClick={() => fetchPokemons()} className='btn-warning text-white col-12'>Carga más pokemones</button>);
 
 const mapStateToProps = state => ({
 });

@@ -42,7 +42,8 @@ export default function startGameReducer(state = {
 		const filterCard = [];
 		while (filterCard.length < 4) {
 			const random = Math.floor(Math.random() * allCards.length);
-			if (allCards[random] !== undefined) filterCard.push(allCards[random]);
+			// if (allCards[random] !== undefined) filterCard.push(allCards[random]);
+			filterCard.push(allCards[random]);
 		}
 
 		filterCard.map((card) => {
@@ -54,10 +55,8 @@ export default function startGameReducer(state = {
 			}
 		});
 
-		// state.cards = [];
 		return {
 			...state,
-			// cards: state.cards.concat(filterCard),
 			cards: filterCard,
 		};
 	}
@@ -68,7 +67,6 @@ export default function startGameReducer(state = {
 	}
 
 	case SHOW_CARD: {
-		// state.cards = state.cards.map((e, ind) => {
 		const cardsWithShowAttr = state.cards.map((e, ind) => {
 			if (ind === action.cardPosition) {
 				return { ...e, showCard: true, toCompare: true };
@@ -76,12 +74,7 @@ export default function startGameReducer(state = {
 
 			if (e.matchedCards) return { ...e, showCard: true };
 			return { ...e, showCard: false };
-			// if (e.matchedCards) {
-			// 	return { ...e, showCard: true };
-			// }
-			// return { ...e, showCard: false };
 		});
-		// return { ...state, cards: state.cards };
 		return { ...state, cards: cardsWithShowAttr };
 	}
 	case COMPARE_CARDS_IN_PLAY: {
