@@ -42,7 +42,6 @@ export default function startGameReducer(state = {
 		const filterCard = [];
 		while (filterCard.length < 4) {
 			const random = Math.floor(Math.random() * allCards.length);
-			// if (allCards[random] !== undefined) filterCard.push(allCards[random]);
 			filterCard.push(allCards[random]);
 		}
 
