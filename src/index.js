@@ -6,7 +6,11 @@ import 'bootstrap';
 import store from './ducks/store/store';
 import App from './App';
 
+import { loadOfflinePokemonsAction } from './ducks/dataReducer';
+
 import css from './style.scss';
+
+store.dispatch(loadOfflinePokemonsAction());
 
 ReactDOM.render(
 	<Provider store={store}>
