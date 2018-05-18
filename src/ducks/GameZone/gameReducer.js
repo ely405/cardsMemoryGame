@@ -22,16 +22,20 @@ function randomArray(array) {
 		const index = Math.floor(Math.random() * counter);
 		counter -= 1;
 		const temp = array[counter];
-		array[counter] = array[index];
-		array[index] = temp;
+		// array[counter] = array[index];
+		array.splice(counter, 1, array[index]);
+		// array[index] = temp;
+		array.splice(index, 1, temp);
 	}
 	return array;
 }
 
 export default function startGameReducer(state = {
-	cards: [], show: false, clicks: 0, cardsToCompare: [], backOfCard: 1,
+	cards: [], show: false, clicks: 0, backOfCard: 1,
 }, action) {
 	const { allCards } = action;
+	const { cards, backOfCard } = state;
+	// let { backOfCard } = state;
 
 	switch (action.type) {
 	case LOAD_CARDS_TO_GAME: {
@@ -50,38 +54,43 @@ export default function startGameReducer(state = {
 			}
 		});
 
-		state.cards = [];
-
+		// state.cards = [];
 		return {
 			...state,
-			cards: state.cards.concat(filterCard),
+			// cards: state.cards.concat(filterCard),
+			cards: filterCard,
 		};
 	}
-	case RANDOM_CARDS:
-		state.backOfCard = (state.backOfCard === 1) ? 2 : 1;
+	case RANDOM_CARDS: {
+		const backNumber = (backOfCard === 1) ? 2 : 1;
 
-		return { ...state, cards: randomArray(state.cards.concat(state.cards)) };
+		return { ...state, cards: randomArray(state.cards.concat(state.cards)), backOfCard: backNumber };
+	}
 
-
-	case SHOW_CARD:
-		state.cards = state.cards.map((e, ind) => {
+	case SHOW_CARD: {
+		// state.cards = state.cards.map((e, ind) => {
+		const cardsWithShowAttr = state.cards.map((e, ind) => {
 			if (ind === action.cardPosition) {
 				return { ...e, showCard: true, toCompare: true };
 			}
 
-			if (e.matchedCards) {
-				return { ...e, showCard: true };
-			}
+			if (e.matchedCards) return { ...e, showCard: true };
 			return { ...e, showCard: false };
+			// if (e.matchedCards) {
+			// 	return { ...e, showCard: true };
+			// }
+			// return { ...e, showCard: false };
 		});
-		return { ...state, cards: state.cards };
+		// return { ...state, cards: state.cards };
+		return { ...state, cards: cardsWithShowAttr };
+	}
+	case COMPARE_CARDS_IN_PLAY: {
+		const cardsToCompare = state.cards.filter(e => e.toCompare);
 
-	case COMPARE_CARDS_IN_PLAY:
-		state.cardsToCompare = state.cards.filter(e => e.toCompare);
-		if (state.cardsToCompare.length === 2) {
-			state.cardsToCompare.map((card) => {
+		if (cardsToCompare.length === 2) {
+			cardsToCompare.map((card) => {
 				const indInAllCards = state.cards.indexOf(card);
-				if (state.cardsToCompare[0].name === state.cardsToCompare[1].name) {
+				if (cardsToCompare[0].name === cardsToCompare[1].name) {
 					state.cards.splice(indInAllCards, 1, {
 						...card, showCard: true, toCompare: false, matchedCards: true,
 					});
@@ -92,7 +101,7 @@ export default function startGameReducer(state = {
 		}
 
 		return state;
-
+	}
 	default: return state;
 	}
 }

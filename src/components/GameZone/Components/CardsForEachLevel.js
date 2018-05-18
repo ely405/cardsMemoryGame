@@ -4,21 +4,23 @@ import { connect } from 'react-redux';
 import { showCardAction, compareCardsInPlayAction } from '../../../ducks/GameZone/gameReducer';
 import { addScoreAction } from '../../../ducks/GameZone/scoreOfGameReducer';
 
-import BeforeStartGameCard from './BeforeStartGame';
+import Welcome from './Welcome';
 import ImageToBackOfCard from './ImageToBackOfCard';
+
+import store from '../../../ducks/store/store';
 
 import style from '../GameZone.scss';
 
-const CardsForEachLevel = props => (
-	(props.game.cards.length > 0) ? <ul className={'col-sm-10 col-md-8 row'}>{
-		props.game.cards.map((item, ind) => <li
+const CardsForEachLevel = ({ game, showCard }) => (
+	(game.cards.length > 0) ? <ul className={'col-sm-10 col-md-8 row'}>{
+		game.cards.map((item, ind) => <li
 			key={`card${ind}`}
-			onClick={() => props.showCard(ind, props.game)}
+			onClick={() => showCard(ind, game)}
 			className={`${style.card} col-3 card jumbotron-fluid justify-content-center`}>
 			{ item.showCard ? <img src={`https://serebii.net/art/th/${item.pokeId}.png`} className='img-fluid'/> :
 				 <ImageToBackOfCard/> }
 		</li>)}
-	</ul> : <BeforeStartGameCard/>
+	</ul> : <Welcome/>
 );
 
 const mapStateToProps = state => ({
@@ -27,6 +29,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
 	showCard(cardPosition, gameStatus) {
+		console.log('lis', gameStatus.cards, 'store ', store.getState());
 		dispatch(showCardAction(cardPosition));
 		dispatch(compareCardsInPlayAction());
 		dispatch(addScoreAction(gameStatus));

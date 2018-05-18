@@ -9,9 +9,10 @@ const fetchPokemonsAction = () => (dispatch) => {
 		type: FETCH_POKEMONS,
 		pokemons: pokemonsJson.pokemons,
 		isLoaded: true,
-		// message: 'Uy! no pudimos cargar más pokemones, revisa tu conexión a internet.',
-		// error: err,
 	});
+
+	// console.warn('pokemons json', pokemonsJson.pokemons.concat('hola'));
+
 
 	return fetch(`https://pokeapi.co/api/v2/pokemon/?limit=10&offset=${randomNumber}`)
 		.then(response => response.json())
@@ -24,14 +25,14 @@ const fetchPokemonsAction = () => (dispatch) => {
 			});
 		})
 		.catch((err) => {
-			// setTimeout(() => {
-			// 	console.warn('paso w segundoa');
-			// 	dispatch({
-			// 		type: FETCH_POKEMONS,
-			// 		isLoaded: true,
-			// 		pokemons: [],
-			// 	});
-			// }, 6000);
+			setTimeout(() => {
+				console.warn('paso w segundoa');
+				dispatch({
+					type: FETCH_POKEMONS,
+					isLoaded: true,
+					pokemons: [],
+				});
+			}, 6000);
 			console.log('pokemons', pokemonsJson);
 			dispatch({
 				type: FETCH_POKEMONS,
@@ -46,62 +47,17 @@ const fetchPokemonsAction = () => (dispatch) => {
 export { fetchPokemonsAction };
 
 export default function dataReducer(state = { data: [], isLoaded: false, message: null }, action) {
-	const { isLoaded } = action;
+	const { isLoaded, pokemons } = action;
+	const { data } = state;
 	switch (action.type) {
 	case FETCH_POKEMONS:
 		console.warn('action data', action.pokemons, action.type);
 		if (isLoaded) {
-			state.data = [];
+			if (pokemons.length > 0) data.splice(0, data.length);
 			return { data: state.data.concat(action.pokemons), isLoaded: true, message: null };
 		}
 
 		return { ...state, isLoaded: false, message: action.message };
-
-
-		// return {
-		// 	...state,
-		// 	data: state.data.concat([
-		// 		{
-		// 			url: 'https://pokeapi.co/api/v2/pokemon/697/',
-		// 			name: 'tyrantrum',
-		// 		},
-		// 		{
-		// 			url: 'https://pokeapi.co/api/v2/pokemon/698/',
-		// 			name: 'amaura',
-		// 		},
-		// 		{
-		// 			url: 'https://pokeapi.co/api/v2/pokemon/699/',
-		// 			name: 'aurorus',
-		// 		},
-		// 		{
-		// 			url: 'https://pokeapi.co/api/v2/pokemon/700/',
-		// 			name: 'sylveon',
-		// 		},
-		// 		{
-		// 			url: 'https://pokeapi.co/api/v2/pokemon/701/',
-		// 			name: 'hawlucha',
-		// 		},
-		// 		{
-		// 			url: 'https://pokeapi.co/api/v2/pokemon/702/',
-		// 			name: 'dedenne',
-		// 		},
-		// 		{
-		// 			url: 'https://pokeapi.co/api/v2/pokemon/703/',
-		// 			name: 'carbink',
-		// 		},
-		// 		{
-		// 			url: 'https://pokeapi.co/api/v2/pokemon/704/',
-		// 			name: 'goomy',
-		// 		},
-		// 		{
-		// 			url: 'https://pokeapi.co/api/v2/pokemon/705/',
-		// 			name: 'sliggoo',
-		// 		},
-		// 		{
-		// 			url: 'https://pokeapi.co/api/v2/pokemon/706/',
-		// 			name: 'goodra',
-		// 		}]),
-		// };
 
 	default: return state;
 	}

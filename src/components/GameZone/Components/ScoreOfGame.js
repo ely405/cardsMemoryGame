@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { addScoreAction } from '../../../ducks/GameZone/scoreOfGameReducer';
 
 const ScoreOfGame = props => (
-	<div className='col-11 col-md-4'>PUNTAJE {props.score.quantity}
+	<div className='col-11 col-md-4'>TU PUNTAJE ES {props.score.quantity}
 		{(props.score.message) ? <p>{props.score.message}</p> : ''}
 	</div>
 );

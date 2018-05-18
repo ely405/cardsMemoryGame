@@ -1,6 +1,6 @@
 import React from 'react';
 
-const BeforeStartGame = (props) => {
+const Welcome = (props) => {
 	console.log('props card', props);
 	return (
 		<div>
@@ -9,4 +9,4 @@ const BeforeStartGame = (props) => {
 	);
 };
 
-export default BeforeStartGame;
+export default Welcome;

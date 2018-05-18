@@ -3,17 +3,41 @@
 				{
 					"url": "https://pokeapi.co/api/v2/pokemon/697/",
 					"name": "tyrantrum"
-				},{
-					"url": "https://pokeapi.co/api/v2/pokemon/697/",
-					"name": "tyrantrum"
-				},{
-					"url": "https://pokeapi.co/api/v2/pokemon/697/",
-					"name": "tyrantrum"
-				},{
-					"url": "https://pokeapi.co/api/v2/pokemon/697/",
-					"name": "tyrantrum"
-				},{
-					"url": "https://pokeapi.co/api/v2/pokemon/697/",
-					"name": "tyrantrum"
+				},
+				{
+					"url": "https://pokeapi.co/api/v2/pokemon/698/",
+					"name": "amaura"
+				},
+				{
+					"url": "https://pokeapi.co/api/v2/pokemon/699/",
+					"name": "aurorus"
+				},
+				{
+					"url": "https://pokeapi.co/api/v2/pokemon/700/",
+					"name": "sylveon"
+				},
+				{
+					"url": "https://pokeapi.co/api/v2/pokemon/701/",
+					"name": "hawlucha"
+				},
+				{
+					"url": "https://pokeapi.co/api/v2/pokemon/702/",
+					"name": "dedenne"
+				},
+				{
+					"url": "https://pokeapi.co/api/v2/pokemon/703/",
+					"name": "carbink"
+				},
+				{
+					"url": "https://pokeapi.co/api/v2/pokemon/704/",
+					"name": "goomy"
+				},
+				{
+					"url": "https://pokeapi.co/api/v2/pokemon/705/",
+					"name": "sliggoo"
+				},
+				{
+					"url": "https://pokeapi.co/api/v2/pokemon/706/",
+					"name": "goodra"
 				}]
 }
