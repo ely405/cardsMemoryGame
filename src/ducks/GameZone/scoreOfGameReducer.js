@@ -9,6 +9,7 @@ export { addScoreAction };
 export default function scoreOfGameReducer(state = { quantity: 0, message: null }, action) {
 	switch (action.type) {
 	case ADD_SCORE: {
+		console.warn('score', action.gameStatus);
 		const score = action.gameStatus.cards.filter(card => card.matchedCards).length / 2;
 
 		// if (score === action.gameStatus.cards.length / 2) {

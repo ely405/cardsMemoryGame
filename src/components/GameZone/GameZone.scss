@@ -1,4 +1,4 @@
-@mixin moveFromTop($from: -15rem, $to: 0 , $animation-timing: 1s) {
+@mixin moveFromTop($from: -15rem, $to: 0 , $animation-timing: 2s) {
 	animation: moveFromTopAnimation $animation-timing ease-in-out;
 	@keyframes moveFromTopAnimation {
 		from { top: $from }

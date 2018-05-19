@@ -5,10 +5,10 @@ const LOAD_OFFLINE_POKEMONS = 'app/pokemonData/LOAD_OFFLINE_POKEMONS';
 
 const fetchPokemonsAction = () => (dispatch) => {
 	const randomNumber = Math.floor(Math.random() * 800);
+
 	return fetch(`https://pokeapi.co/api/v2/pokemon/?limit=15&offset=${randomNumber}`)
 		.then(response => response.json())
 		.then((data) => {
-			console.log('response', data);
 			dispatch({
 				type: FETCH_POKEMONS,
 				pokemons: data.results,
@@ -22,8 +22,7 @@ const fetchPokemonsAction = () => (dispatch) => {
 					type: FETCH_POKEMONS,
 					pokemons: [],
 				});
-			}, 30000);
-			console.log('pokemons', pokemonsJson);
+			}, 5000);
 			dispatch({
 				type: FETCH_POKEMONS,
 				pokemons: [],
@@ -38,7 +37,7 @@ const loadOfflinePokemonsAction = () => ({ type: LOAD_OFFLINE_POKEMONS });
 
 export { fetchPokemonsAction, loadOfflinePokemonsAction };
 
-export default function dataReducer(state = { data: [], isLoaded: false, message: null }, action) {
+export default function dataReducer(state = { data: [], isLoad: false, message: null }, action) {
 	const { isLoaded, pokemons } = action;
 	const { data } = state;
 
@@ -46,10 +45,12 @@ export default function dataReducer(state = { data: [], isLoaded: false, message
 	case FETCH_POKEMONS:
 		if (isLoaded) {
 			if (pokemons.length > 0) data.splice(0, data.length);
-			return { data: state.data.concat(action.pokemons), isLoaded: true, message: null };
+			return { data: state.data.concat(action.pokemons), isLoad: true, message: null };
+		} else if (isLoaded === undefined) {
+			return { ...state, isLoad: isLoaded, message: action.message };
 		}
+		return { ...state, isLoad: false, message: action.message };
 
-		return { ...state, isLoaded: false, message: action.message };
 
 	case LOAD_OFFLINE_POKEMONS:
 		return { ...state, data: data.concat(pokemonsJson.pokemons) };

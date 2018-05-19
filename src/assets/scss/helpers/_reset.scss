@@ -3,16 +3,7 @@ body {
 	color: $font-color;
 }
 
-button, input { outline: none; }
+button, input, button:focus { outline: none; }
 button { cursor: pointer; }
 
 ul { list-style: none;}
-
-// a {
-//   display: block;
-//   font-size: 4vw;
-//   color: $font-color;
-//   transition: all .3s ease-out;
-
-//   &:hover { color: $light; }
-// }

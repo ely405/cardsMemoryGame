@@ -18,18 +18,6 @@ export {
 	compareCardsInPlayAction,
 };
 
-// function randomArray(array) {
-// 	let counter = array.length;
-// 	while (counter > 0) {
-// 		const index = Math.floor(Math.random() * counter);
-// 		counter -= 1;
-// 		const temp = array[counter];
-// 		array.splice(counter, 1, array[index]);
-// 		array.splice(index, 1, temp);
-// 	}
-// 	return array;
-// }
-
 export default function startGameReducer(state = {
 	cards: [], show: false, clicks: 0, backOfCard: 1,
 }, action) {
@@ -50,7 +38,7 @@ export default function startGameReducer(state = {
 			}
 			const img = new Image();
 			img.src = `https://serebii.net/art/th/${card.pokeId}.png`;
-			console.warn('card id', card.pokeId, 'img', img);
+			return card;
 		});
 
 		return {
