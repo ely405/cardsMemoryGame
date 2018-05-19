@@ -1,25 +1,10 @@
-// html {
-//   font: {
-//     // family: $font;
-//     size: $font-size;
-//   }
-//   color: $font-color;
-//   background: {
-//     color: $bg-color;
-//     // image: url('./img/webpack-cube.svg');
-//     repeat: repeat;
-//     position: center;
-//     attachment: fixed;
-//     size: 10%;
-// 	}
-// }
-
 body {
 	background-color: $bg-color;
 	color: $font-color;
 }
 
 button, input { outline: none; }
+button { cursor: pointer; }
 
 ul { list-style: none;}
 

@@ -4,11 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title><%= htmlWebpackPlugin.options.title %></title>
+	<title><%= htmlWebpackPlugin.options.title %></title>
+	<link rel="manifest" href="./manifest.json">
+	<meta name="theme-color" content="#253239">
   <meta name="description" content="<%= htmlWebpackPlugin.options.description %>">
 </head>
 <body>
-  <!-- Webpack te permite agregar código EJS en tus HTML, más info http://ejs.co -->
   <div id="root" class="container"></div>
 </body>
 </html>

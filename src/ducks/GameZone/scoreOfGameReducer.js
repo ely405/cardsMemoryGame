@@ -11,9 +11,9 @@ export default function scoreOfGameReducer(state = { quantity: 0, message: null 
 	case ADD_SCORE: {
 		const score = action.gameStatus.cards.filter(card => card.matchedCards).length / 2;
 
-		if (score === action.gameStatus.cards.length / 2) {
-			return { quantity: score, message: 'Ganaste! :)' };
-		}
+		// if (score === action.gameStatus.cards.length / 2) {
+		// // 	return { quantity: score, message: 'Ganaste! :)' };
+		// // }
 		return { ...state, quantity: score };
 	}
 

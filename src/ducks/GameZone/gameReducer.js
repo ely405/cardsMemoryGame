@@ -37,7 +37,6 @@ export default function startGameReducer(state = {
 	switch (action.type) {
 	case LOAD_CARDS_TO_GAME: {
 		const filterCard = [];
-		// while (filterCard.length < 4) {
 		while (filterCard.length < numberOfCardPairs) {
 			const random = Math.floor(Math.random() * allCards.length);
 			filterCard.push(allCards[random]);

@@ -12,10 +12,10 @@ import store from '../../../ducks/store/store';
 import style from '../GameZone.scss';
 
 const CardsForEachLevel = ({ game, showCard }) => (
-	(game.cards.length > 0) ? <ul className={'col-sm-10 col-md-8 row'}>{
+	(game.cards.length > 0) ? <ul className='col-sm-10 col-md-8 row'>{
 		game.cards.map((item, ind) => <li
 			key={`card${ind}`}
-			onClick={() => { showCard(ind, game); console.warn('nombre', item); }}
+			onClick={() => { showCard(ind, game); console.warn('nombre', item.name); }}
 			className={`${style.card} col-3 card jumbotron-fluid justify-content-center`}>
 			{ item.showCard ? <img src={`https://serebii.net/art/th/${item.pokeId}.png`} className='img-fluid'/> : <ImageToBackOfCard/> }
 		</li>)}

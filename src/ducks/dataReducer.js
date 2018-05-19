@@ -22,7 +22,7 @@ const fetchPokemonsAction = () => (dispatch) => {
 					type: FETCH_POKEMONS,
 					pokemons: [],
 				});
-			}, 6000);
+			}, 30000);
 			console.log('pokemons', pokemonsJson);
 			dispatch({
 				type: FETCH_POKEMONS,

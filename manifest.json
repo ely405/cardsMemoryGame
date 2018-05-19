@@ -1,0 +1,12 @@
+{
+  "name": "Juego de cartas de Pokemon",
+  "short_name": "pokeCards",
+  "description": "Un juego de cartas con la que te divertirás mucho mostrando tus habilidades de memoria, recordando a cada pokemon que ya viste.",
+  "background_color": "#fff",
+  "theme_color": "#253239",
+  "orientation": "portrait",
+  "display": "standalone",
+  "start_url": "./?utm=homescreen",
+  "scope": "./",
+  "lang": "es"
+}
