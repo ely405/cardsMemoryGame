@@ -19,12 +19,22 @@ const GameZone = ({
 	<div>
 		{pokeData.message ? <ErrorMessage message={pokeData.message} handlerClass='fixed-top text-center badge-danger'/> : ''}
 		<div className='navbar'>
-			<Button handlerClick={() => startGame(pokeData.data)}
-				text={cards.length > 0 ? 'Quiero reinciar la partida' : 'Quiero empezar el juego'}
-				handlerClass='btn-success col-12'/>
-			<Button handlerClick={() => fetchPokemons()}
-				text='Cargar más pokemones'
-				handlerClass='btn-warning text-white col-12'/>
+			<Button
+				handlerClick={() => startGame(pokeData.data, 4)}
+				text={cards.length > 0 ? 'R8' : '8'}
+				handlerClass='btn-success'/>
+			<Button
+				handlerClick={() => startGame(pokeData.data, 6)}
+				text={cards.length > 0 ? 'R12' : '12'}
+				handlerClass='btn-success'/>
+			<Button
+				handlerClick={() => startGame(pokeData.data, 8)}
+				text={cards.length > 0 ? 'R16' : '16'}
+				handlerClass='btn-success'/>
+			<Button
+				handlerClick={() => fetchPokemons()}
+				text='Recarga pokemones'
+				handlerClass='btn-warning text-white'/>
 		</div>
 		<div className={`${style.gameContainer} navbar-nav align-items-center justify-content-center flex-md-row align-items-md-start`}>
 			<CardsForEachLevel/>
@@ -42,8 +52,8 @@ const mapDispatchToProps = dispatch => ({
 	fetchPokemons() {
 		dispatch(fetchPokemonsAction());
 	},
-	startGame(allCards) {
-		dispatch(loadCardsAction(allCards));
+	startGame(allCards, numberOfCardPairs) {
+		dispatch(loadCardsAction(allCards, numberOfCardPairs));
 		dispatch(randomCardsAction());
 	},
 });

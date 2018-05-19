@@ -1,14 +1,16 @@
 {
   "name": "CardsGame",
   "version": "1.0.0",
-  "description": "Un juego de cartas en la que te divertirás muchp mostrando tus habilidades de memoria. ",
+	"description": "Un juego de cartas en la que te divertirás muchp mostrando tus habilidades de memoria. ",
+	"homepage": "https://ely405.github.io/cardsMemoryGame",
   "main": "src/index.js",
   "browserslist": [
     "> 5%",
     "ie > 10"
   ],
   "scripts": {
-    "dev": "webpack -d --watch --colors",
+		"dev": "webpack -d --watch --colors",
+		"deploy": "gh-pages -d public",
     "prod": "webpack -p",
     "clean": "rimraf \"./public/*\"",
     "build": "npm run clean && webpack -p",

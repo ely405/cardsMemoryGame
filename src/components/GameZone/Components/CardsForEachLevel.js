@@ -15,10 +15,9 @@ const CardsForEachLevel = ({ game, showCard }) => (
 	(game.cards.length > 0) ? <ul className={'col-sm-10 col-md-8 row'}>{
 		game.cards.map((item, ind) => <li
 			key={`card${ind}`}
-			onClick={() => showCard(ind, game)}
+			onClick={() => { showCard(ind, game); console.warn('nombre', item); }}
 			className={`${style.card} col-3 card jumbotron-fluid justify-content-center`}>
-			{ item.showCard ? <img src={`https://serebii.net/art/th/${item.pokeId}.png`} className='img-fluid'/> :
-				 <ImageToBackOfCard/> }
+			{ item.showCard ? <img src={`https://serebii.net/art/th/${item.pokeId}.png`} className='img-fluid'/> : <ImageToBackOfCard/> }
 		</li>)}
 	</ul> : <Welcome/>
 );
@@ -29,7 +28,6 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
 	showCard(cardPosition, gameStatus) {
-		console.log('lis', gameStatus.cards, 'store ', store.getState());
 		dispatch(showCardAction(cardPosition));
 		dispatch(compareCardsInPlayAction());
 		dispatch(addScoreAction(gameStatus));

@@ -3,7 +3,7 @@ const RANDOM_CARDS = 'gameZone/startButton/RANDOM_CARDS';
 const SHOW_CARD = 'gameZone/card/SHOW_CARD';
 const COMPARE_CARDS_IN_PLAY = 'gameZone/card/COMPARE_CARDS_IN_PLAY';
 
-const loadCardsAction = allCards => ({ type: LOAD_CARDS_TO_GAME, allCards });
+const loadCardsAction = (allCards, numberOfCardPairs) => ({ type: LOAD_CARDS_TO_GAME, allCards, numberOfCardPairs });
 const randomCardsAction = () => ({ type: RANDOM_CARDS });
 const showCardAction = cardPosition => ({ type: SHOW_CARD, cardPosition });
 const compareCardsInPlayAction = () => ({ type: COMPARE_CARDS_IN_PLAY });
@@ -31,13 +31,14 @@ function randomArray(array) {
 export default function startGameReducer(state = {
 	cards: [], show: false, clicks: 0, backOfCard: 1,
 }, action) {
-	const { allCards } = action;
+	const { allCards, numberOfCardPairs } = action;
 	const { cards, backOfCard } = state;
 
 	switch (action.type) {
 	case LOAD_CARDS_TO_GAME: {
 		const filterCard = [];
-		while (filterCard.length < 4) {
+		// while (filterCard.length < 4) {
+		while (filterCard.length < numberOfCardPairs) {
 			const random = Math.floor(Math.random() * allCards.length);
 			filterCard.push(allCards[random]);
 		}
@@ -50,7 +51,7 @@ export default function startGameReducer(state = {
 
 				card.pokeId = parseInt(idPokemon[0], 10);
 			}
-			const img = new Image()
+			const img = new Image();
 			img.src = `https://serebii.net/art/th/${card.pokeId}.png`;
 			console.warn('card id', card.pokeId, 'img', img);
 		});
@@ -77,6 +78,7 @@ export default function startGameReducer(state = {
 		});
 		return { ...state, cards: cardsWithShowAttr };
 	}
+
 	case COMPARE_CARDS_IN_PLAY: {
 		const cardsToCompare = state.cards.filter(e => e.toCompare);
 
