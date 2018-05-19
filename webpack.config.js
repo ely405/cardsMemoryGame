@@ -11,8 +11,7 @@ const	publicDir = path.resolve(__dirname, 'public');
 
 module.exports = {
 	context: srcDir,
-	devtool: 'inline-sourcemap',
-	// devtool: 'hidden-source-map',
+	devtool: 'hidden-source-map',
 	entry: {
 		script: './index.js',
 	},
@@ -55,7 +54,6 @@ module.exports = {
 						'sass-loader?sourceMap',
 					],
 					publicPath: './',
-					// loader: ' css-loader! resolve-url-loader! sass-loader? sourceMap',
 				}),
 			},
 			{
@@ -69,7 +67,6 @@ module.exports = {
 						'sass-loader?sourceMap',
 					],
 					publicPath: './',
-					// loader: ' css-loader! resolve-url-loader! sass-loader? sourceMap',
 				}),
 			},
 			{
@@ -86,11 +83,18 @@ module.exports = {
 		],
 	},
 	plugins: [
+		new webpack.optimize.UglifyJsPlugin({
+			sourceMap: true,
+			output: {
+				comments: false,
+			},
+		}),
 		new webpack.HashedModuleIdsPlugin(),
 		new webpack.DefinePlugin({
 			'process.env': {
 				NODE_ENV: JSON.stringify('production'),
 			},
+			// 'process.env.NODE_ENV': JSON.stringify('production'),
 		}),
 		new ExtractTextPlugin({
 			filename: 'style.css',

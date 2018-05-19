@@ -8,7 +8,6 @@ const	publicDir = path.resolve(__dirname, 'public');
 
 module.exports = {
 	context: srcDir,
-	// devtool: 'hidden-source-map',
 	devtool: 'inline-sourcemap',
 	entry: {
 		script: ['babel-polyfill', './index.js'],
