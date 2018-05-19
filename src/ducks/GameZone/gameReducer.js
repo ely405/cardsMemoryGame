@@ -37,9 +37,16 @@ export default function startGameReducer(state = {
 	switch (action.type) {
 	case LOAD_CARDS_TO_GAME: {
 		const filterCard = [];
+		const selectedNumbers = [];
+
 		while (filterCard.length < numberOfCardPairs) {
 			const random = Math.floor(Math.random() * allCards.length);
-			filterCard.push(allCards[random]);
+			const exist = selectedNumbers.some(num => num === random);
+			selectedNumbers.push(random);
+			if (!exist) {
+				console.log('no existe');
+				filterCard.push(allCards[random]);
+			}
 		}
 
 		// id para cargar sus imágenes y precargamos imágenes
