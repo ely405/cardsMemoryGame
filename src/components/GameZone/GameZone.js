@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import Button from '../Button';
-// import ErrorMessage from '../ErrorMessage';
+import ErrorMessage from '../ErrorMessage';
 import CardsForEachLevel from './Components/CardsForEachLevel';
 import ScoreOfGame from './Components/ScoreOfGame';
 
@@ -17,6 +17,7 @@ const GameZone = ({
 	cards, pokeData, fetchPokemons, startGame,
 }) => (
 	<div>
+		{pokeData.message ? <ErrorMessage message={pokeData.message} handlerClass='fixed-top text-center badge-danger'/> : ''}
 		<div className='navbar'>
 			<Button handlerClick={() => startGame(pokeData.data)}
 				text={cards.length > 0 ? 'Quiero reinciar la partida' : 'Quiero empezar el juego'}

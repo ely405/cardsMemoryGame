@@ -22,9 +22,7 @@ function randomArray(array) {
 		const index = Math.floor(Math.random() * counter);
 		counter -= 1;
 		const temp = array[counter];
-		// array[counter] = array[index];
 		array.splice(counter, 1, array[index]);
-		// array[index] = temp;
 		array.splice(index, 1, temp);
 	}
 	return array;
@@ -35,7 +33,6 @@ export default function startGameReducer(state = {
 }, action) {
 	const { allCards } = action;
 	const { cards, backOfCard } = state;
-	// let { backOfCard } = state;
 
 	switch (action.type) {
 	case LOAD_CARDS_TO_GAME: {
@@ -45,6 +42,7 @@ export default function startGameReducer(state = {
 			filterCard.push(allCards[random]);
 		}
 
+		// id para cargar sus imágenes y precargamos imágenes
 		filterCard.map((card) => {
 			if (!card.pokeId) {
 				const urlArr = card.url.split('/');
@@ -52,6 +50,9 @@ export default function startGameReducer(state = {
 
 				card.pokeId = parseInt(idPokemon[0], 10);
 			}
+			const img = new Image()
+			img.src = `https://serebii.net/art/th/${card.pokeId}.png`;
+			console.warn('card id', card.pokeId, 'img', img);
 		});
 
 		return {
