@@ -13,7 +13,15 @@ const fetchPokemonsAction = () => (dispatch) => {
 				type: FETCH_POKEMONS,
 				pokemons: data.results,
 				isLoaded: true,
+				message: 'Ahora puedes jugar con los nuevos pokemones :)'
 			});
+			setTimeout(() => {
+				console.warn('paso w segundoa');
+				dispatch({
+					type: FETCH_POKEMONS,
+					pokemons: [],
+				});
+			}, 5000);
 		})
 		.catch((err) => {
 			setTimeout(() => {
@@ -45,7 +53,7 @@ export default function dataReducer(state = { data: [], isLoad: false, message: 
 	case FETCH_POKEMONS:
 		if (isLoaded) {
 			if (pokemons.length > 0) data.splice(0, data.length);
-			return { data: state.data.concat(action.pokemons), isLoad: true, message: null };
+			return { data: state.data.concat(action.pokemons), isLoad: true, message: action.message };
 		} else if (isLoaded === undefined) {
 			return { ...state, isLoad: isLoaded, message: action.message };
 		}

@@ -11,7 +11,8 @@ const	publicDir = path.resolve(__dirname, 'public');
 
 module.exports = {
 	context: srcDir,
-	devtool: 'hidden-source-map',
+	// devtool: 'hidden-source-map',
+	devtool: 'source-map',
 	entry: {
 		script: './index.js',
 	},
