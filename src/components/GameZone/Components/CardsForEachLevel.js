@@ -12,11 +12,11 @@ import store from '../../../ducks/store/store';
 import style from '../GameZone.scss';
 
 const CardsForEachLevel = ({ game, showCard }) => (
-	(game.cards.length > 0) ? <ul className='col-sm-10 col-md-8 row'>{
+	(game.cards.length > 0) ? <ul className='col-sm-10 row'>{
 		game.cards.map((item, ind) => <li
 			key={`card${ind}`}
-			onClick={() => { showCard(ind, game); console.warn('nombre', item.name); }}
-			className={`${style.card} col-3 card jumbotron-fluid justify-content-center`}>
+			onClick={() => { showCard(ind); console.warn('nombre', item.name); }}
+			className={`${style.card} col-3 card jumbotron-fluid justify-content-center p-3`}>
 			{ item.showCard ? <img src={`https://serebii.net/art/th/${item.pokeId}.png`} className='img-fluid'/> : <ImageToBackOfCard/> }
 		</li>)}
 	</ul> : <Welcome/>
@@ -27,10 +27,9 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-	showCard(cardPosition, gameStatus) {
+	showCard(cardPosition) {
 		dispatch(showCardAction(cardPosition));
 		dispatch(compareCardsInPlayAction());
-		dispatch(addScoreAction(gameStatus));
 	},
 });
 

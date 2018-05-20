@@ -81,7 +81,7 @@ module.exports = {
 		new HtmlWebpackPlugin({
 			template: path.join(srcDir, 'template.html'),
 			filename: 'index.html',
-			title: 'Cards Game',
+			title: 'Poke Cards',
 			chunks: ['script'],
 		}),
 	],
