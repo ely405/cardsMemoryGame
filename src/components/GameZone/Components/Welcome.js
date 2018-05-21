@@ -6,30 +6,38 @@ import Button from '../../Button';
 import { fetchPokemonsAction } from '../../../ducks/dataReducer';
 import { randomCardsAction, loadCardsAction } from '../../../ducks/GameZone/gameReducer';
 
-const Welcome = ({ cards, pokeData, fetchPokemons, startGame }) => (
+const Welcome = ({
+	cards, pokeData, fetchPokemons, startGame,
+}) => (
 	<div>
-			Para iniciar el juego, elige con cuántas cartas quieres jugar.
-		<div>
+		{cards.length > 0 ? '' :
+			<p className='col-12'>Haz clic en las cartas y trata de conseguir todas las parejas en el menor número de intentos posible.
+			Comienza por el nivel más fácil.</p>}
+		<div className='d-flex flex-wrap'>
 			<Button
 				handlerClick={() => startGame(pokeData.data, 4)}
-				text={cards.length > 0 ? 'R8' : 'Fácil'}
+				text='Fácil'
+				classText='d-none d-sm-block'
 				handlerClass='btn-success m-1 bo-none p-3'
-				classIcon='icon-play'/>
+				classIcon='icon-play fs-2x'/>
 			<Button
 				handlerClick={() => startGame(pokeData.data, 6)}
-				text={cards.length > 0 ? 'R12' : 'Medio'}
-				handlerClass='btn-warning m-1 bo-none p-3'
-				classIcon='icon-play'/>
+				text='Medio'
+				classText='d-none d-sm-block'
+				handlerClass='btn-warning m-1 bo-none p-3 text-white'
+				classIcon='icon-play fs-2x'/>
 			<Button
 				handlerClick={() => startGame(pokeData.data, 8)}
-				text={cards.length > 0 ? 'R16' : 'Difícil'}
+				text='Difícil'
+				classText='d-none d-sm-block'
 				handlerClass='btn-danger m-1 bo-none p-3'
-				classIcon='icon-play'/>
+				classIcon='icon-play fs-2x'/>
 			<Button
 				handlerClick={() => fetchPokemons()}
 				text='Más pokemones'
+				classText='d-none d-sm-block'
 				handlerClass='btn-warning text-white m-1 bo-none p-3'
-				classIcon='icon-sync'/>
+				classIcon='icon-sync fs-2x'/>
 		</div>
 	</div>
 );

@@ -16,21 +16,14 @@ import messageCSS from '../MessageInfo.scss';
 
 const GameZone = ({
 	cards, pokeData, fetchPokemons, startGame,
-}) => {
-	console.warn('pokedata', cards);
-	return (
-		<div>
-			{pokeData.isLoad ? <MessageInfo message={pokeData.message} handlerClass={`${messageCSS.messageContainer} fixed-top text-center badge-success`}/> :
-				pokeData.isLoad === undefined ?	'' : <MessageInfo message={pokeData.message} handlerClass={`${messageCSS.messageContainer} fixed-top text-center badge-danger`}/> }
-			<div className={` navbar-nav align-items-center justify-content-center flex-md-row align-items-md-start`}>
-				{cards.length > 0 ? <Welcome/> : ''}
-				{cards.length > 0 ? <CardsForEachLevel/> : <Welcome/>}
-			</div>
-
-
-		</div>
-	);
-};
+}) => (
+	<div className='d-flex flex-column align-items-center'>
+		{pokeData.isLoad ? <MessageInfo message={pokeData.message} handlerClass={`${messageCSS.messageContainer} fixed-top text-center badge-success`}/> :
+			pokeData.isLoad === undefined ?	'' : <MessageInfo message={pokeData.message} handlerClass={`${messageCSS.messageContainer} fixed-top text-center badge-danger`}/> }
+		{cards.length > 0 ? <Welcome/> : ''}
+		{cards.length > 0 ? <CardsForEachLevel/> : <Welcome/>}
+	</div>
+);
 
 const mapStateToProps = state => ({
 	cards: state.gameStatus.cards,
