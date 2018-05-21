@@ -10,11 +10,6 @@ import { loadOfflinePokemonsAction } from './ducks/dataReducer';
 
 import css from './style.scss';
 
-if (process.env.NODE_ENV !== 'production') {
-	  console.log('Looks like we are in development mode!');
-	 }
-
-
 store.dispatch(loadOfflinePokemonsAction());
 
 ReactDOM.render(

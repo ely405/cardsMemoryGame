@@ -1,28 +1,23 @@
 .messageContainer {
-	// transition: all 5s ease-in-out;
 	animation-name: topToBottom;
-  animation-duration: 6s;
+  animation-duration: 3s;
 	animation-timing-function: ease-in-out;
   animation-play-state: running;
 }
 
 @-webkit-keyframes topToBottom {
 	0%   { top: -8%; }
-	50%, 75% { top: 0}
-  100% { top: -8%; }
+	100% { top: 0}
 }
 @-moz-keyframes topToBottom {
 	0%   { top: -8%; }
-	50%, 75% { top: 0}
-  100% { top: -8%; }
+	100% { top: 0}
 }
 @-o-keyframes topToBottom {
 	0%   { top: -8%; }
-	50%, 75% { top: 0}
-  100% { top: -8%; }
+	100% { top: 0}
 }
 @keyframes topToBottom {
 	0%   { top: -8%; }
-	50%, 75% { top: 0}
-  100% { top: -8%; }
+	100% { top: 0}
 }

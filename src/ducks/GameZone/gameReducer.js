@@ -4,22 +4,24 @@ const LOAD_CARDS_TO_GAME = 'gameZone/game/LOAD_CARDS_TO_GAME';
 const RANDOM_CARDS = 'gameZone/startButton/RANDOM_CARDS';
 const SHOW_CARD = 'gameZone/card/SHOW_CARD';
 const COMPARE_CARDS_IN_PLAY = 'gameZone/card/COMPARE_CARDS_IN_PLAY';
+const TIME_RESOLVED = 'gameZone/cards/TIME_RESOLVED';
 
 const loadCardsAction = (allCards, numberOfCardPairs) => ({ type: LOAD_CARDS_TO_GAME, allCards, numberOfCardPairs });
 const randomCardsAction = () => ({ type: RANDOM_CARDS });
 const showCardAction = cardPosition => ({ type: SHOW_CARD, cardPosition });
 const compareCardsInPlayAction = () => ({ type: COMPARE_CARDS_IN_PLAY });
+const timeResolvedAction = stateOFCards => ({ type: TIME_RESOLVED, stateOFCards });
 
 export {
 	loadCardsAction,
-	RANDOM_CARDS,
 	randomCardsAction,
 	showCardAction,
 	compareCardsInPlayAction,
+	timeResolvedAction,
 };
 
 export default function startGameReducer(state = {
-	cards: [], show: false, clicks: 0, backOfCard: 1,
+	cards: [], backOfCard: 1,
 }, action) {
 	const { allCards, numberOfCardPairs } = action;
 	const { cards, backOfCard } = state;
@@ -46,6 +48,7 @@ export default function startGameReducer(state = {
 			cards: filteredCards,
 		};
 	}
+
 	case RANDOM_CARDS: {
 		const backNumber = (backOfCard === 1) ? 2 : 1;
 
@@ -82,6 +85,14 @@ export default function startGameReducer(state = {
 
 		return state;
 	}
+
+	case TIME_RESOLVED: {
+		let seconds = 0;
+		// const x = setInterval(() => { seconds += 1; }, 1000);
+		console.warn('secondos', seconds += 1, 'time resolved', action.stateOFCards);
+		return state;
+	}
+
 	default: return state;
 	}
 }

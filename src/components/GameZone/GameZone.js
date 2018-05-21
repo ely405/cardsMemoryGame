@@ -19,9 +19,11 @@ const GameZone = ({
 }) => (
 	<div className='d-flex flex-column align-items-center'>
 		{pokeData.isLoad ? <MessageInfo message={pokeData.message} handlerClass={`${messageCSS.messageContainer} fixed-top text-center badge-success`}/> :
-			pokeData.isLoad === undefined ?	'' : <MessageInfo message={pokeData.message} handlerClass={`${messageCSS.messageContainer} fixed-top text-center badge-danger`}/> }
-		{cards.length > 0 ? <Welcome/> : ''}
-		{cards.length > 0 ? <CardsForEachLevel/> : <Welcome/>}
+			pokeData.isLoad === false ?	 <MessageInfo message={pokeData.message} handlerClass={`${messageCSS.messageContainer} fixed-top text-center badge-danger`}/> : '' }
+		{cards.length > 0 ? <div><Welcome/><CardsForEachLevel/></div> : <Welcome/>}
+		{/* {cards.length > 0 ? <Welcome/> : ''}
+		{cards.length > 0 ? <CardsForEachLevel/> : <Welcome/>} */}
+
 	</div>
 );
 

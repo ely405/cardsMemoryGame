@@ -45,7 +45,7 @@ const loadOfflinePokemonsAction = () => ({ type: LOAD_OFFLINE_POKEMONS });
 
 export { fetchPokemonsAction, loadOfflinePokemonsAction };
 
-export default function dataReducer(state = { data: [], isLoad: false, message: null }, action) {
+export default function dataReducer(state = { data: [], isLoad: null, message: null }, action) {
 	const { isLoaded, pokemons } = action;
 	const { data } = state;
 
