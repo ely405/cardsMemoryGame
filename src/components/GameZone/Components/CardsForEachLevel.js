@@ -12,7 +12,7 @@ import store from '../../../ducks/store/store';
 import style from '../GameZone.scss';
 
 const CardsForEachLevel = ({ game, showCard }) => (
-	(game.cards.length > 0) ? <ul className='col-sm-10 row'>{
+	(game.cards.length > 0) ? <ul className={`${style.gameContainer} col-sm-10 row`}>{
 		game.cards.map((item, ind) => <li
 			key={`card${ind}`}
 			onClick={() => { showCard(ind); console.warn('nombre', item.name); }}
