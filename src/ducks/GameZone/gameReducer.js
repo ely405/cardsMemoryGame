@@ -4,27 +4,22 @@ const LOAD_CARDS_TO_GAME = 'gameZone/game/LOAD_CARDS_TO_GAME';
 const RANDOM_CARDS = 'gameZone/startButton/RANDOM_CARDS';
 const SHOW_CARD = 'gameZone/card/SHOW_CARD';
 const COMPARE_CARDS_IN_PLAY = 'gameZone/card/COMPARE_CARDS_IN_PLAY';
-const TIME_RESOLVED = 'gameZone/cards/TIME_RESOLVED';
 
 const loadCardsAction = (allCards, numberOfCardPairs) => ({ type: LOAD_CARDS_TO_GAME, allCards, numberOfCardPairs });
-const randomCardsAction = () => ({ type: RANDOM_CARDS });
+const randomCardsAction = gameIsReady => ({ type: RANDOM_CARDS, gameIsReady });
 const showCardAction = cardPosition => ({ type: SHOW_CARD, cardPosition });
 const compareCardsInPlayAction = () => ({ type: COMPARE_CARDS_IN_PLAY });
-const timeResolvedAction = stateOFCards => ({ type: TIME_RESOLVED, stateOFCards });
 
 export {
 	loadCardsAction,
 	randomCardsAction,
 	showCardAction,
 	compareCardsInPlayAction,
-	timeResolvedAction,
 };
 
-export default function startGameReducer(state = {
-	cards: [], backOfCard: 1,
-}, action) {
+export default function startGameReducer(state = { cards: [], gameIsReady: false }, action) {
 	const { allCards, numberOfCardPairs } = action;
-	const { cards, backOfCard } = state;
+	const { cards } = state;
 
 	switch (action.type) {
 	case LOAD_CARDS_TO_GAME: {
@@ -49,11 +44,8 @@ export default function startGameReducer(state = {
 		};
 	}
 
-	case RANDOM_CARDS: {
-		const backNumber = (backOfCard === 1) ? 2 : 1;
-
-		return { ...state, cards: randomArray(state.cards.concat(state.cards)), backOfCard: backNumber };
-	}
+	case RANDOM_CARDS:
+		return { cards: randomArray(state.cards.concat(state.cards)), gameIsReady: true };
 
 	case SHOW_CARD: {
 		const cardsWithShowAttr = state.cards.map((e, ind) => {
@@ -64,33 +56,27 @@ export default function startGameReducer(state = {
 			if (e.matchedCards) return { ...e, showCard: true };
 			return { ...e, showCard: false };
 		});
-		return { ...state, cards: cardsWithShowAttr };
+		return { cards: cardsWithShowAttr };
 	}
 
 	case COMPARE_CARDS_IN_PLAY: {
+		const allCard = state.cards;
 		const cardsToCompare = state.cards.filter(e => e.toCompare);
 
 		if (cardsToCompare.length === 2) {
 			cardsToCompare.map((card) => {
-				const indInAllCards = state.cards.indexOf(card);
+				const indInAllCards = allCard.indexOf(card);
 				if (cardsToCompare[0].name === cardsToCompare[1].name) {
-					state.cards.splice(indInAllCards, 1, {
+					allCard.splice(indInAllCards, 1, {
 						...card, showCard: true, toCompare: false, matchedCards: true,
 					});
 				} else {
-					setTimeout(() => state.cards.splice(indInAllCards, 1, { ...card, showCard: false, toCompare: false }), 500);
+					setTimeout(() => allCard.splice(indInAllCards, 1, { ...card, showCard: false, toCompare: false }), 500);
 				}
 			});
 		}
 
-		return state;
-	}
-
-	case TIME_RESOLVED: {
-		let seconds = 0;
-		// const x = setInterval(() => { seconds += 1; }, 1000);
-		console.warn('secondos', seconds += 1, 'time resolved', action.stateOFCards);
-		return state;
+		return { cards: allCard };
 	}
 
 	default: return state;

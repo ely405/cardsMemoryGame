@@ -14,6 +14,10 @@
 
 ul.gameContainer {
 	@include moveFromTop();
+
+	.gameOverlay{
+		background-color: rgba(43, 58, 66, 0.7);
+	}
 }
 
 .card {

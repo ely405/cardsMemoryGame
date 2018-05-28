@@ -6,8 +6,8 @@ import {
 import thunk from 'redux-thunk';
 
 import gameReducer from '../GameZone/gameReducer';
-import scoreReducer from '../GameZone/scoreOfGameReducer';
 import dataReducer from '../dataReducer';
+import timerReducer from '../GameZone/timerReducer';
 
 const logger = store => next => (action) => {
 	console.log('dispatch action', action);
@@ -18,8 +18,8 @@ const logger = store => next => (action) => {
 
 const reducerCombined = combineReducers({
 	gameStatus: gameReducer,
-	score: scoreReducer,
 	pokeData: dataReducer,
+	timer: timerReducer,
 });
 
 export default createStore(reducerCombined, applyMiddleware(logger, thunk));

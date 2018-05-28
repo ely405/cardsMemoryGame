@@ -13,10 +13,9 @@ const fetchPokemonsAction = () => (dispatch) => {
 				type: FETCH_POKEMONS,
 				pokemons: data.results,
 				isLoaded: true,
-				message: 'Ahora puedes jugar con los nuevos pokemones :)'
+				message: 'Ahora puedes jugar con los nuevos pokemones :)',
 			});
 			setTimeout(() => {
-				console.warn('paso w segundoa');
 				dispatch({
 					type: FETCH_POKEMONS,
 					pokemons: [],
@@ -25,7 +24,6 @@ const fetchPokemonsAction = () => (dispatch) => {
 		})
 		.catch((err) => {
 			setTimeout(() => {
-				console.warn('paso w segundoa');
 				dispatch({
 					type: FETCH_POKEMONS,
 					pokemons: [],
@@ -58,7 +56,6 @@ export default function dataReducer(state = { data: [], isLoad: null, message: n
 			return { ...state, isLoad: isLoaded, message: action.message };
 		}
 		return { ...state, isLoad: false, message: action.message };
-
 
 	case LOAD_OFFLINE_POKEMONS:
 		return { ...state, data: data.concat(pokemonsJson.pokemons) };
