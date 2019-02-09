@@ -45,10 +45,6 @@ const Welcome = ({
 				handlerClick={() => timerRestart()}
 				text='2'
 				handlerClass='btn-danger m-1 bo-none p-3'/>
-			{/* <Button
-				handlerClick={() => timerStop(timer.timerName)}
-				handlerClass='btn-success m-1 bo-none p-3'
-				classIcon='icon-play fs-2x'/> */}
 		</div>
 		<h5>{timer.minutes}:{ timer.seconds < 10 ? `0${timer.seconds}` : timer.seconds }</h5>
 	</div>

@@ -27,7 +27,7 @@ module.exports = {
 		hot: true,
 		inline: true,
 		stats: 'errors-only',
-		port: process.env.PORT || 5000,
+		port: process.env.PORT || 5005,
 		openPage: '',
 	},
 	module: {

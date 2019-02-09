@@ -8,7 +8,7 @@ import App from './App';
 
 import { loadOfflinePokemonsAction } from './ducks/dataReducer';
 
-import css from './style.scss';
+// import css from './style.scss';
 
 store.dispatch(loadOfflinePokemonsAction());
 
